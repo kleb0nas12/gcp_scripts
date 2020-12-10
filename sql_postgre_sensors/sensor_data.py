@@ -53,6 +53,7 @@ if __name__ == '__main__':
     op = MainOperation()
     db = DbOperations()
     while True:
+        print('...Starting process...')
         _time = strftime(datetime.now(),'%H:%M:%S')
         CPU_TEMP = op._get_cput()
         OUT_HUM, OUT_TEMP = op._get_out_temp_hum()
