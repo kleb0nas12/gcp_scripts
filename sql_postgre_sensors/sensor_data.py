@@ -5,7 +5,6 @@ import Adafruit_DHT
 import time
 import glob
 import os
-from time import strftime
 
 
 class MainOperation:
@@ -49,17 +48,18 @@ class MainOperation:
         return _read_temp()
 
 
-if __name__ == '__main__':
-    op = MainOperation()
-    db = DbOperations()
-    while True:
-        print('...Starting process...')
-        _time = strftime(datetime.now(),'%H:%M:%S')
-        CPU_TEMP = op._get_cput()
-        OUT_HUM, OUT_TEMP = op._get_out_temp_hum()
-        CAM_TEMP = op._get_cam_temperature()
-
-        print('CPU temp: {}C, Camera temp: {}C, Outside temperature: {}C, Outside humidity: {}%'.format(
+#if __name__ == '__main__':
+print('Hi')
+op = MainOperation()
+db = DbOperations()
+print('Hi')
+while True:
+    print('...Starting process...')
+    _time = datetime.strftime(datetime.now(),'%H:%M:%S')
+    CPU_TEMP = op._get_cput()
+    OUT_HUM, OUT_TEMP = op._get_out_temp_hum()
+    CAM_TEMP = op._get_cam_temperature()
+    print('CPU temp: {}C, Camera temp: {}C, Outside temperature: {}C, Outside humidity: {}%'.format(
             CPU_TEMP, CAM_TEMP, OUT_TEMP, OUT_HUM))
-        db.omit_data(_time,CPU_TEMP,CAM_TEMP,OUT_TEMP, OUT_HUM)
-        time.sleep(2)
+    db.omit_data(_time,CPU_TEMP,CAM_TEMP,OUT_TEMP, OUT_HUM)
+    time.sleep(2)

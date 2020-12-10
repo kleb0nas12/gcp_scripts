@@ -1,2 +1,4 @@
 account.py
 ssl/
+__pycache__
+.vscode
