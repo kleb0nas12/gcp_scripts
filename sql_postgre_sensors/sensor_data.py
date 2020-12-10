@@ -9,7 +9,6 @@ import os
 
 class MainOperation:
     def __init__(self):
-        #self.DB = DbOperations()
         self.cpu_t = CPUTemperature()
         self.DHT_SENSOR = Adafruit_DHT.DHT22
         self.DHT_PIN = 18
@@ -48,18 +47,16 @@ class MainOperation:
         return _read_temp()
 
 
-#if __name__ == '__main__':
-print('Hi')
-op = MainOperation()
-db = DbOperations()
-print('Hi')
-while True:
-    print('...Starting process...')
-    _time = datetime.strftime(datetime.now(),'%H:%M:%S')
-    CPU_TEMP = op._get_cput()
-    OUT_HUM, OUT_TEMP = op._get_out_temp_hum()
-    CAM_TEMP = op._get_cam_temperature()
-    print('CPU temp: {}C, Camera temp: {}C, Outside temperature: {}C, Outside humidity: {}%'.format(
+if __name__ == '__main__':
+    op = MainOperation()
+    db = DbOperations()
+    while True:
+        print('...Starting process...')
+        _time = datetime.strftime(datetime.now(), '%H:%M:%S')
+        CPU_TEMP = op._get_cput()
+        OUT_HUM, OUT_TEMP = op._get_out_temp_hum()
+        CAM_TEMP = op._get_cam_temperature()
+        print('CPU temp: {}C, Camera temp: {}C, Outside temperature: {}C, Outside humidity: {}%'.format(
             CPU_TEMP, CAM_TEMP, OUT_TEMP, OUT_HUM))
-    db.omit_data(_time,CPU_TEMP,CAM_TEMP,OUT_TEMP, OUT_HUM)
-    time.sleep(2)
+        db.omit_data(_time, CPU_TEMP, CAM_TEMP, OUT_TEMP, OUT_HUM)
+        time.sleep(2)
